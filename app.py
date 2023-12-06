@@ -12,10 +12,10 @@ if __name__ == '__main__':
 
 # Load database configuration from a YAML file or set your database config here
 
-app.config['MYSQL_HOST'] = 'kjc47@webhost01.arcs.njit.edu'
+app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'kjc47'
+app.config['MYSQL_DB'] = 'flask_users'
 
 mysql = MySQL(app)
 
