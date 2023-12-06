@@ -5,6 +5,10 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
 # Load database configuration from a YAML file or set your database config here
 db = yaml.load(open('db.yaml'), Loader=yaml.FullLoader)
 app.config['MYSQL_HOST'] = db['mysql_host']
