@@ -3,7 +3,7 @@ from flask_mysqldb import MySQL
 
 from datetime import datetime
 
-app = Flask('__name__')
+app = Flask(__name__)
 app.secret_key = 'your_secret_key'
 
 
@@ -50,11 +50,18 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         pwd = request.form['password']
-        cur = mysql.connection.cursor()
-        cur.execute(f"insert into tbl_users (username, password) values ('{username}', '{pwd}')")
-        mysql.connection.commit()
-        cur.close()
-        return redirect(url_for('login'))
+        cur = None
+        try:
+            cur = mysql.connection.cursor()
+            cur.execute(f"INSERT INTO tbl_users (username, password) values ('{username}', '{pwd}')")
+            mysql.connection.commit()
+            return redirect(url_for('login'))
+        except Exception as e:
+            print("An error occured:" , e)
+        finally:
+            if cur:
+                 cur.close()
+
     return render_template('register.html')
 
 @app.route('/logout')
