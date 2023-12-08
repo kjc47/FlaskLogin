@@ -36,6 +36,11 @@ def login():
         cur.execute("SELECT username, password FROM tbl_users WHERE username = %s", [username])
         user = cur.fetchone()
         cur.close()
+    try:
+        print("MySql Connection object:", mysql.connection )
+        cur = mysql.connection.cursor()
+    except AttributeError as e:
+        print("Attribute Error:", e)
 
         if user and pwd == user[1]:
             session['username'] = user[0]
