@@ -6,8 +6,7 @@ from datetime import datetime
 app = Flask('__name__')
 app.secret_key = 'your_secret_key'
 
-if __name__ == '__main__':
-   app.run(debug=True)
+
 
 
 # Load database configuration from a YAML file or set your database config here
